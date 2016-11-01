@@ -9,29 +9,25 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@Entity(name = "author")
-@Table(name = "author")
-public class Authors implements IAuthors {
+@Entity
+@Table(name = "book_genre")
+public class BookGenre {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", length = 6, nullable = false)
   private Long id;
-  @Column
-  private String author_name;
-  @Column
-  private Long author_book;
+  @Column(name = "book_genre")
+  private String bookGenre;
 
-
-  public Authors() {
+  public BookGenre() {
   }
 
   @Override
   public String toString() {
-    return "Authors{" +
+    return "BookGenre{" +
             "id=" + id +
-            ", author_name='" + author_name + '\'' +
-            ", author_book=" + author_book +
+            ", bookGenre='" + bookGenre + '\'' +
             '}';
   }
 }
-
