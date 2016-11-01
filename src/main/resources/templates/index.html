@@ -22,12 +22,17 @@
         <td th:text="${book.genre.bookGenre}"></td>
 
     </tr>
-    <button id="addbtn">add new book</button>
+    <form th:action="@{/save}" method="post" th:object="${newBook}">
+        <input type="text" th:field ="*{bookName}">
+
+    <button type="submit" id="addbtn">add new book</button>
+    </form>
+
     </tbody>
 </table>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script>
+<!--<script>
     $(document).ready(function () {
         $("#addbtn").onclick(function () {
             $.post("/saveOrUpdate", '  {"id": 2,"bookName": "The Alchemist","bookAuthor": 3,"bookGenre": 3}')
@@ -35,6 +40,6 @@
         });
     })
 
-</script>
+</script>-->
 </body>
 </html>
