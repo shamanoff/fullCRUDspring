@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @Entity
-@Table(name = "book_genre")
+@Table(name = "book_genres")
 public class BookGenre {
 
   @Id

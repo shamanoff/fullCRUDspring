@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>hello [[${name}]]</h1>
+<table class="table table-striped table-bordered table-list clientsTable">
+    <thead>
+    <tr>
+        <th class="col-md-5 col-xs-5">Book Name</th>
+        <th class="col-md-5 col-xs-5">Author</th>
+        <th class="col-md-5 col-xs-5">Genre</th>
+    </tr>
+
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td class="hidden" th:text="${book.bookName}"></td>
+        <td th:text="${book.author.authorName}"></td>
+        <td th:text="${book.genre.bookGenre}"></td>
+
+    </tr>
+    <button id="addbtn">add new book</button>
+    </tbody>
+</table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#addbtn").onclick(function () {
+            $.post("/saveOrUpdate", '  {"id": 2,"bookName": "The Alchemist","bookAuthor": 3,"bookGenre": 3}')
+
+        });
+    })
+
+</script>
+</body>
+</html>

@@ -24,6 +24,14 @@ public class Book {
   @Column(name = "book_genre")
   private Long bookGenre;
 
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "book_author", insertable = false, updatable = false)
+  private Author author;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "book_genre", insertable = false, updatable = false)
+  private BookGenre genre;
+
   public Book() {
   }
 
