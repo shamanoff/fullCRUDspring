@@ -3,35 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.css"/>
+
+
 </head>
 <body>
-<h1>hello [[${name}]]</h1>
-<table class="table table-striped table-bordered table-list clientsTable">
-    <thead>
-    <tr>
-        <th class="col-md-5 col-xs-5">Book Name</th>
-        <th class="col-md-5 col-xs-5">Author</th>
-        <th class="col-md-5 col-xs-5">Genre</th>
-    </tr>
+<div class="row" id="form">
+    <div class="small-12 medium-12 columns">
 
-    </thead>
-    <tbody>
-    <tr th:each="book : ${books}">
-        <td class="hidden" th:text="${book.bookName}"></td>
-        <td th:text="${book.author.authorName}"></td>
-        <td th:text="${book.genre.bookGenre}"></td>
+        <h1>My Books</h1>
+        <table class="table table-striped table-bordered table-list clientsTable">
+            <thead>
+            <tr>
+                <th class="col-md-5 col-xs-5">Book Name</th>
+                <th class="col-md-5 col-xs-5">Author</th>
+                <th class="col-md-5 col-xs-5">Genre</th>
+            </tr>
 
-    </tr>
-    <form th:action="@{/save}" method="post" th:object="${newBook}">
-        <input type="text" th:field ="*{bookName}">
+            </thead>
+            <tbody>
+            <tr th:each="book : ${books}">
+                <td class="hidden" th:text="${book.bookName}"></td>
+                <td th:text="${book.author.authorName}"></td>
+                <td th:text="${book.genre.bookGenre}"></td>
 
-    <button type="submit" id="addbtn">add new book</button>
-    </form>
+            </tr>
 
-    </tbody>
-</table>
+            </tbody>
+        </table>
+        <form th:action="@{/save}" method="post" th:object="${newBook}">
+            <label>ID
+                <input type="text" th:field="*{id}">
+            </label>
+            <label>Book
+                <input type="text" th:field="*{bookName}">
+            </label>
+            <label>Book Author
+                <select th:field="*{bookAuthor}">
+                    <option value="1">Agatha Christie</option>
+                    <option value="2">William Shakespeare</option>
+                    <option value="3">Paulo Coelho</option>
+                    <option value="4">Stephen King</option>
+                </select>
+            </label>
+            <!--<input type="text" th:field="*{bookAuthor}">-->
+            <label>Book Genre
+                <select th:field="*{bookGenre}">
+                    <option value="1">classic</option>
+                    <option value="2">comedy</option>
+                    <option value="4">detective</option>
+                    <option value="3">fantasy</option>
+                </select>
+            </label>
+            <!--<input type="text" th:field="*{bookGenre}">-->
+
+            <button type="submit" id="addbtn" class="button" value="Submit">Add New Book</button>
+        </form>
+    </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/plugins/foundation.core.js"></script>
+
 <!--<script>
     $(document).ready(function () {
         $("#addbtn").onclick(function () {
