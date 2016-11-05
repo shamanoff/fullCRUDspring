@@ -32,6 +32,10 @@ mv.addObject("newBook", new Book());
     @PostMapping("/save")
     public View  saveOrUpdate(Book book) {
         View view = new RedirectView("/");
+        if(book.getId() == null){
+            bookRepository.save(book);
+            return view;
+        }
         Book existBook = bookRepository.findOne(book.getId());
         if (existBook != null) {
             existBook.setBookAuthor(book.getBookAuthor());
@@ -44,5 +48,7 @@ mv.addObject("newBook", new Book());
         bookRepository.save(book);
         return view;
     }
+
+
 
 }

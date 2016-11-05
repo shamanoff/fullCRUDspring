@@ -2,6 +2,8 @@ package com.example.controller;
 
 import com.example.model.Book;
 import com.example.repository.IBookRepository;
+import com.example.represent.BookRep;
+import com.example.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,10 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    public IBookRepository bookRepository;
+    private IBookRepository bookRepository;
+
+    @Autowired
+    private BookService bookService;
 
     @PostMapping("/saveOrUpdate")
     public ResponseEntity<Book> saveOrUpdate(@RequestBody Book book) {
@@ -48,6 +53,11 @@ public class BookController {
         Book book = bookRepository.findOne(id);
         bookRepository.delete(id);
         return ResponseEntity.ok(book);
+    }
+
+    @PostMapping(value = "/saveNewBook")
+    public ResponseEntity<Book> saveNewBook(@RequestBody BookRep bookRep){
+        return ResponseEntity.ok(bookService.save(bookRep));
     }
 
 }
