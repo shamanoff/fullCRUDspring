@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="static/foundation-icons/foundation-icons.css" />
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css">
+    <!--<link rel="stylesheet" href="/../resources/static/foundation-icons/foundation-icons.css" />-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" />
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.css"/>
     <script src="../../../../bower_components/jquery/dist/jquery.js"></script>
 
@@ -20,7 +20,7 @@
             <thead>
             <tr>
                 <th style="text-align: center">Book ID</th>
-                <th style="text-align: center">Book Name</th>
+                <th style="text-align: center">Book Name <i class="fi-pencil"></i></th>
                 <th style="text-align: center">Author</th>
                 <th style="text-align: center">Genre</th>
                 <th style="text-align: center"></th>
@@ -31,13 +31,13 @@
             <tbody>
             <tr class="tr" th:each="book : ${books}" th:data-id="${book.id}">
                     <td  class="id" th:text="${book.id}"></td>
-                    <td contenteditable="true" class="bookName" th:text="${book.bookName}"><i class="fi-pencil"></i></td>
+                    <td contenteditable="true" class="bookName" th:text="${book.bookName}"></td>
                     <td  class="authorName" th:text="${book.author.authorName}"></td>
                     <td class="bookGenre" th:text="${book.genre.bookGenre}"></td>
                     <td>
                         <div class="button-group">
                             <a class="button delete" >Delete</a>
-                            <a class="button update" >Update</a>
+                            <a class="button update" >Edit Book Name <i class="fi-pencil"></i></a>
 
                         </div>
                     </td>
