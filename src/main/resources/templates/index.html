@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css">-->
+    <link rel="stylesheet" href="static/foundation-icons/foundation-icons.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.css"/>
     <script src="../../../../bower_components/jquery/dist/jquery.js"></script>
 
@@ -28,10 +30,10 @@
             </thead>
             <tbody>
             <tr class="tr" th:each="book : ${books}" th:data-id="${book.id}">
-                    <td contenteditable="true" class="id" th:text="${book.id}"></td>
-                    <td contenteditable="true" class="bookName" th:text="${book.bookName}"></td>
-                    <td contenteditable="true" class="authorName" th:text="${book.author.authorName}"></td>
-                    <td contenteditable="true" class="bookGenre" th:text="${book.genre.bookGenre}"></td>
+                    <td  class="id" th:text="${book.id}"></td>
+                    <td contenteditable="true" class="bookName" th:text="${book.bookName}"><i class="fi-pencil"></i></td>
+                    <td  class="authorName" th:text="${book.author.authorName}"></td>
+                    <td class="bookGenre" th:text="${book.genre.bookGenre}"></td>
                     <td>
                         <div class="button-group">
                             <a class="button delete" >Delete</a>
@@ -101,9 +103,9 @@
 
         var book = {
             id: $(this).closest(".tr").find(".id").text(),
-            bookName: $(this).closest(".tr").find(".bookName").text(),
-            author: $(this).closest(".tr").find(".authorName").text(),
-            genre: $(this).closest(".tr").find(".bookGenre").text()
+            bookName: $(this).closest(".tr").find(".bookName").text()
+//            author: $(this).closest(".tr").find(".authorName").text(),
+//            genre: $(this).closest(".tr").find(".bookGenre").text()
 
         };
         console.log(url);

@@ -16,23 +16,24 @@ import java.util.List;
 public class BookViewController {
     @Autowired
     private IBookRepository bookRepository;
+
     @GetMapping
-    public ModelAndView index(){
+    public ModelAndView index() {
         ModelAndView mv = new ModelAndView("index");
 
         mv.addObject("name", "user");
 
         List<Book> findedBooks = bookRepository.findAll();
         mv.addObject("books", findedBooks);
-mv.addObject("newBook", new Book());
+        mv.addObject("newBook", new Book());
         return mv;
     }
 
 
     @PostMapping("/save")
-    public View  saveOrUpdate(Book book) {
+    public View saveOrUpdate(Book book) {
         View view = new RedirectView("/");
-        if(book.getId() == null){
+        if (book.getId() == null) {
             bookRepository.save(book);
             return view;
         }
@@ -48,7 +49,6 @@ mv.addObject("newBook", new Book());
         bookRepository.save(book);
         return view;
     }
-
 
 
 }
