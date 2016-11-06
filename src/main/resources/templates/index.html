@@ -27,20 +27,19 @@
 
             </thead>
             <tbody>
-            <tr th:each="book : ${books}">
-
+            <tr class="tr" th:each="book : ${books}" th:data-id="${book.id}">
                     <td contenteditable="true" class="id" th:text="${book.id}"></td>
-                    <td contenteditable="true" th:text="${book.bookName}"></td>
-                    <td contenteditable="true" th:text="${book.author.authorName}"></td>
-                    <td contenteditable="true"  th:text="${book.genre.bookGenre}"></td>
+                    <td contenteditable="true" class="bookName" th:text="${book.bookName}"></td>
+                    <td contenteditable="true" class="authorName" th:text="${book.author.authorName}"></td>
+                    <td contenteditable="true" class="bookGenre" th:text="${book.genre.bookGenre}"></td>
                     <td>
                         <div class="button-group">
-                            <a class="button delete" th:data-id="${book.id}">Delete</a>
-                            <button class="button" type="submit">Update</button>
+                            <a class="button delete" >Delete</a>
+                            <a class="button update" >Update</a>
 
                         </div>
                     </td>
-
+                </form>
             </tr>
 
             </tbody>
@@ -79,11 +78,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.js"></script>
 
 <script>
+    'use strict';
     $(document).foundation();
 
     $(".delete").click(function () {
 
-        var url = "delete/" + $(this).data('id');
+        var url = "/delete/" + $(this).closest(".tr").data('id');
         console.log(url);
         $.ajax(url, {
             method: "DELETE",
@@ -91,6 +91,33 @@
                 console.log("deleted");
             }
         });
+        $(this).closest(".tr").remove();
+
+    });
+
+    $(".update").click(function () {
+
+        var url = "/saveNewBook";
+
+        var book = {
+            id: $(this).closest(".tr").find(".id").text(),
+            bookName: $(this).closest(".tr").find(".bookName").text(),
+            author: $(this).closest(".tr").find(".authorName").text(),
+            genre: $(this).closest(".tr").find(".bookGenre").text()
+
+        };
+        console.log(url);
+        $.ajax(url, {
+            method: "POST",
+            data: JSON.stringify(book),
+            dataType: "application/json",
+            contentType:"application/json",
+            success: function () {
+                console.log("updated");
+            }
+        });
+
+
     });
 
     /*    $(document).ready(function () {

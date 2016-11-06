@@ -22,14 +22,26 @@ public class BookService {
     @Transactional
     public Book save(BookRep bookRep) {
 
+
+
+        Book oldBook = bookRepository.findOne((bookRep.getId()));
+        BookGenre oldGenre = genreRepository.findOne(bookRep.getId());
+
+
         Author author = new Author();
         author.setAuthorName(bookRep.getAuthor());
         Long authorId = authorRepository.saveAndFlush(author).getId();
 
+        if (oldGenre.getBookGenre() == bookRep.getGenre()){
+
+        }
         BookGenre genre = new BookGenre();
         genre.setBookGenre(bookRep.getGenre());
         Long genreId = genreRepository.saveAndFlush(genre).getId();
 
+        if(oldBook.getBookName() == bookRep.getBookName()){
+
+        }
         Book book = new Book();
         book.setBookName(bookRep.getBookName());
         book.setBookAuthor(authorId);
